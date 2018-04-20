@@ -34,7 +34,7 @@ client.on("message", (message) => {
 
 client.on('guildMemberAdd', function (member) {
 member.createDM().then(function (channel) {
- return channel.send('Bienvenue sur le serveur + member.displayName')
+ return channel.send('Bienvenue sur le serveur que tu viens de rejoindre, je te souhaite un excellent moment dedans')
 }).catch(console.error)
 })
 
