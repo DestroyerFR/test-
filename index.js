@@ -263,7 +263,7 @@ client.on('message', message => {
 
 client.on('guildMemberAdd', function (member) {
   member.createDM().then(function (channel) {
-channel.send('Bienvenue sur le serveur, je te souhaite de passer un agréable moment ' + displayName )
+channel.send('Bienvenue sur le serveur, je te souhaite de passer un agréable moment ')
   }).catch(console.error)
 })
 
