@@ -40,7 +40,7 @@ member.createDM().then(function (channel) {
 
 client.on('message', message => {
   if(message.content.includes("https") || message.content.includes("http")) {
-      if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) {
+      if(!message.guild.member(message.author).hasPermission("EMBED_LINKS")) {
           message.delete();
           const embed = new Discord.RichEmbed()
               .setTitle("Erreur")
