@@ -275,4 +275,3 @@ client.on('guildMemberAdd', member => {
   var role = member.guild.roles.find('name', 'Membre');
 })
 
-client.user.setActivity(`Nombre d'utilisateurs : ${client.users.size}`);
