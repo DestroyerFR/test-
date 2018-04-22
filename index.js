@@ -2,7 +2,7 @@
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
-
+var prefix = ('!');
 client.on("ready", () => {
     console.log("I am ready!");
   });
@@ -275,3 +275,14 @@ client.on('guildMemberAdd', member => {
   var role = member.guild.roles.find('name', 'Membre');
 })
 
+bot.on('message',message => {
+    if (message.content === prefix +'invitation'){
+        var invitation_embed = new Discord.RichEmbed()
+       .setColor('#25E6B9')
+       .addField("invitation du bot","   Lien du bot : https://discordapp.com/oauth2/authorize?client_id=432084941640302593&scope=bot&permissions=8")
+       .addField("invitation du serveur not ok","Lien d'invitation: https://discord.gg/jRvuNUg ")
+       .setFooter("Page d'invitation")
+       message.channel.sendEmbed(invitation_embed);
+   console.log("La commande d'invitation a été demander");
+   }
+});
