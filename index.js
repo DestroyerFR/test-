@@ -289,14 +289,4 @@ client.on('message',message => {
 
 
 
-client.on('message',message => {
-    if (message.content === prefix +'help'){
-        var help_embed = new Discord.RichEmbed()
-       .setColor('#25E6B9')
-       .addField("Comandes du bot",".help : Affiche cette page (Génius)             .invitation: Donne le lien d'invitation du bot")
-       .addField("Interaction","Ce sont des easter egg que vous devez trouvez tout seul")
-       .setFooter("Page d'aide")
-       message.channel.sendEmbed(help_embed);
-   console.log("La comande d'aide a été demander");
-
 
