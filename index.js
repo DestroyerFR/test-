@@ -275,7 +275,7 @@ client.on('guildMemberAdd', member => {
   var role = member.guild.roles.find('name', 'Membre');
 })
 
-bot.on('message',message => {
+client.on('message',message => {
     if (message.content === prefix +'invitation'){
         var invitation_embed = new Discord.RichEmbed()
        .setColor('#25E6B9')
