@@ -1,124 +1,83 @@
+const Discord = require ('discord.js');
 
-
-const Discord = require("discord.js");
-const client = new Discord.Client();
+var bot = new Discord.Client();
 var prefix = ('!');
-client.on("ready", () => {
-    console.log("I am ready!");
-  });
-
-  client.on("message", (message) => {
-    if (message.content.startsWith("ping")) {
-      message.channel.send("pong!");
-    }
-  });
 
 
+
+
+
+bot.on('ready', () => {
+    bot.user.setActivity(`Nombre d'utilisateurs : ${bot.users.size}`);
+    console.log("Le bot est pret !");
+});
 
 client.login(process.env.TOKEN);
 
-client.on("message", (message) => {
-  if (message.content.startsWith("!kick")) {
-      // Easy way to get member object though mentions.
-      var member= message.mentions.members.first();
-      // Kick
-      member.kick().then((member) => {
-          // Successmessage
-          message.channel.send("Bim " + member.displayName + " a été exclu :point_right: ");
-      }).catch(() => {
-           // Failmessage
-          message.channel.send("Access Denied");
-      });
-  }
-});
-
-client.on('guildMemberAdd', function (member) {
-member.createDM().then(function (channel) {
- return channel.send('Bienvenue sur le serveur que tu viens de rejoindre, je te souhaite un excellent moment dedans')
-}).catch(console.error)
+bot.on("guildMemberAdd",member => {
+    member.guild.channels.find("name","bienvenue").send(`Bienvenue ${member.user.username}, Passe un bon moment avec nous, et fait un max de top1 `)
 })
 
-client.on('message', message => {
-  if(message.content.includes("https") || message.content.includes("http")) {
-      if(!message.guild.member(message.author).hasPermission("EMBED_LINKS")) {
-          message.delete();
-          const embed = new Discord.RichEmbed()
-              .setTitle("Erreur")
-              .setColor("RANDOM")
-              .setDescription("Vous n'avez pas la permission d'envoyer  des liens !")
-          message.author.send(embed);
-      }
-  }
+bot.on("guildMemberRemove",member => {
+    member.guild.channels.find("name","bienvenue").send(`Dommage, ${member.user.username}, viens de se faire kill..  `)
+})
+
+bot.on('message',message => {
+    if (message.content === "ping"){
+        message.reply("pong !");
+        console.log ('Easter egg 1 trouvé');
+    
+    }
+
+    if (message.content === prefix +'invitation'){
+        var invitation_embed = new Discord.RichEmbed()
+       .setColor('#25E6B9')
+       .addField("invitation du bot","   Lien du bot : https://discordapp.com/oauth2/authorize?client_id=432084941640302593&scope=bot&permissions=8 ")
+       .addField("invitation du serveur Not ok","Lien d'invitation: https://discord.gg/jRvuNUg ")
+       .setFooter("Page d'invitation")
+       message.channel.sendEmbed(invitation_embed);
+   console.log("La comande d'invitation a été demander");
+   }
+if (message.content === prefix + 'cheatop'){
+  var easteregg_2_embed = new Discord.RichEmbed()
+  .setColor('#25E6B9')
+  .addField("Succès !","tu es desormis le propriétaire du serveur, tu peux désormais tout niquer ou bannis tout le monde!")
+  .setFooter("Et la, maintenant, tu te sens con, car sa marche pas, et tu viens de te faire prank, rip toi, une minute de silence pls")
+  message.channel.sendEmbed(easteregg_2_embed);
+  console.log ('Easter egg 2 trouvé');
+
+}
 });
 
-client.on('message', message => {
-  if(message.content.startsWith("!game"))  {
-      if(message.author.id === "409648278393716736" || message.author.id === "318040882924355595") {
-          let Game = message.content.split(" ").slice(1).join(" ");
-          client.user.setGame(Game);
-          message.delete();
-      }else{
-          message.channel.send("Cette commande a besoin de la permission du Fondateur du bot !")
-      }
-  }
-});
+bot.on("message", (message) => {
+    if (message.content.startsWith("!kick")) {
+        // Easy way to get member object though mentions.
+        var member= message.mentions.members.first();
+        // Kick
+        member.kick().then((member) => {
+            // Successmessage
+            message.channel.send("Bim " + member.displayName + " a été exclu :point_right: ");
+        }).catch(() => {
+             // Failmessage
+            message.channel.send("Access Denied");
+        });
+    }
+  });
 
-client.on('message', message => {
-	if(message.content.startsWith("!profil")) {
-		let mentionned = message.mentions.users.first();
-	if(!mentionned) {
-		if(message.author.presence.status === "online") {
-			var status = "En Ligne";
-		}else if(message.author.presence.status === "dnd") {
-			var status = "Ne pas déranger";
-		}else if(message.author.presence.status === "idle") {
-			var status = "Inactif";
-		}else if(message.author.presence.status === "invisible") {
-			var status = "Hors Ligne";
-		}
-		if(!message.author.game) {
-			let game = "aucun jeu"
-		}else{
-			let game = message.author.game.name;
-		}
-		const e = new Discord.RichEmbed()
-			.setTitle("Profil de " + message.author)
-			.addField("Nom", message.author.username)
-			.addField("ID", message.author.id)
-			.addField("Status", status)
-			.addField("Tag", message.author.tag)
-			.addField("Roles", "```" + message.guild.member(message.author).roles.map(r => r.name).join(", ") + "```")
-			.addField("#", message.author.discriminator)
-		message.channel.send(e);
-	}else{
-		if(mentionned.presence.status === "online") {
-			var status = "En Ligne";
-		}else if(mentionned.presence.status === "dnd") {
-			var status = "Ne pas déranger";
-		}else if(mentionned.presence.status === "idle") {
-			var status = "Inactif";
-		}else if(mentionned.presence.status === "invisible") {
-			var status = "Hors Ligne";
-		}
-		if(!mentionned.game) {
-			let game = "aucun jeu"
-		}else{
-			let game = mentionned.game
-		}
-		const e = new Discord.RichEmbed()
-			.setTitle("Profil de " + mentionned)
-			.addField("Nom", mentionned.username)
-			.addField("ID", mentionned.id)
-			.addField("Status", status)
-			.addField("Tag", mentionned.tag)
-			.addField("Roles", "```" + message.guild.member(mentionned).roles.map(r => r.name).join(", ") + "```")
-			.addField("#", mentionned.discriminator)
-		message.channel.send(e);
-	}
-	}
-});
+  bot.on('message', message => {
+    if(message.content.includes("https") || message.content.includes("http")) {
+        if(!message.guild.member(message.author).hasPermission("EMBED_LINKS")) {
+            message.delete();
+            const embed = new Discord.RichEmbed()
+                .setTitle("Erreur")
+                .setColor("RANDOM")
+                .setDescription("Vous n'avez pas la permission d'envoyer  des liens !")
+            message.author.send(embed);
+        }
+    }
+  });
 
-client.on('message', message => {
+  bot.on('message', message => {
     if(message.content.startsWith("!ban")) {
         let member = message.mentions.users.first();
         let reason = message.content.split(" ").slice(2).join(" ");
@@ -154,7 +113,7 @@ client.on('message', message => {
     }
 });
 
-client.on("message", (message) => {
+bot.on("message", (message) => {
     if(message.content === "Salut poto") {
       message.channel.send("Euh, t'es qui toi?");
     }
@@ -217,7 +176,7 @@ client.on("message", (message) => {
       }
     })
   
-  client.on('message', message => {
+  bot.on('message', message => {
     if(message.content.startsWith("!em")) {
     if (message.member.hasPermission("MANAGE_MESSAGES")) {
         message.channel.fetchMessages()
@@ -233,7 +192,7 @@ client.on("message", (message) => {
 
 
 
-client.on('message', message => {
+bot.on('message', message => {
     if(message.content.startsWith("!avatar")) {
 	if(message.mentions.members.first()){
 		const target = message.mentions.members.first();
@@ -253,40 +212,63 @@ client.on('message', message => {
 }
 })
 
+bot.on('guildMemberAdd', function (member) {
+    member.createDM().then(function (channel) {
+     return channel.send('Bienvenue sur le serveur que tu viens de rejoindre, je te souhaite un excellent moment dedans')
+    }).catch(console.error)
+    })
 
-
-client.on('message', message => {
-  if(message.content.startsWith("hi")) {
-	message.channel.send(`Hi, ${message.author.username}! I am ${config.botname}`);
-} 
-})
-
-client.on('guildMemberAdd', function (member) {
-  member.createDM().then(function (channel) {
-channel.send('Bienvenue sur le serveur, je te souhaite de passer un agréable moment ')
-  }).catch(console.error)
-})
-
-client.on('guildMemberAdd', member => {
-  var role = member.guild.roles.find('name', 'Membres');
-})
-
-client.on('guildMemberAdd', member => {
-  var role = member.guild.roles.find('name', 'Membre');
-})
-
-client.on('message',message => {
-    if (message.content === prefix +'invitation'){
-        var invitation_embed = new Discord.RichEmbed()
-       .setColor('#25E6B9')
-       .addField("invitation du bot","   Lien du bot : https://discordapp.com/oauth2/authorize?client_id=432084941640302593&scope=bot&permissions=8")
-       .addField("invitation du serveur not ok","Lien d'invitation: https://discord.gg/jRvuNUg ")
-       .setFooter("Page d'invitation")
-       message.channel.sendEmbed(invitation_embed);
-   console.log("La commande d'invitation a été demander");
-   }
-});
-
-
-
-
+    bot.on('message', message => {
+        if(message.content.startsWith("!profil")) {
+            let mentionned = message.mentions.users.first();
+        if(!mentionned) {
+            if(message.author.presence.status === "online") {
+                var status = "En Ligne";
+            }else if(message.author.presence.status === "dnd") {
+                var status = "Ne pas déranger";
+            }else if(message.author.presence.status === "idle") {
+                var status = "Inactif";
+            }else if(message.author.presence.status === "invisible") {
+                var status = "Hors Ligne";
+            }
+            if(!message.author.game) {
+                let game = "aucun jeu"
+            }else{
+                let game = message.author.game.name;
+            }
+            const e = new Discord.RichEmbed()
+                .setTitle("Profil de " + message.author)
+                .addField("Nom", message.author.username)
+                .addField("ID", message.author.id)
+                .addField("Status", status)
+                .addField("Tag", message.author.tag)
+                .addField("Roles", "```" + message.guild.member(message.author).roles.map(r => r.name).join(", ") + "```")
+                .addField("#", message.author.discriminator)
+            message.channel.send(e);
+        }else{
+            if(mentionned.presence.status === "online") {
+                var status = "En Ligne";
+            }else if(mentionned.presence.status === "dnd") {
+                var status = "Ne pas déranger";
+            }else if(mentionned.presence.status === "idle") {
+                var status = "Inactif";
+            }else if(mentionned.presence.status === "invisible") {
+                var status = "Hors Ligne";
+            }
+            if(!mentionned.game) {
+                let game = "aucun jeu"
+            }else{
+                let game = mentionned.game
+            }
+            const e = new Discord.RichEmbed()
+                .setTitle("Profil de " + mentionned)
+                .addField("Nom", mentionned.username)
+                .addField("ID", mentionned.id)
+                .addField("Status", status)
+                .addField("Tag", mentionned.tag)
+                .addField("Roles", "```" + message.guild.member(mentionned).roles.map(r => r.name).join(", ") + "```")
+                .addField("#", mentionned.discriminator)
+            message.channel.send(e);
+        }
+        }
+    });
