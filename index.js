@@ -310,3 +310,19 @@ bot.on('guildMemberAdd', function (member) {
                 .addField("Réponse", reponse)
                 message.channel.sendEmbed(embed)
             }}) 
+
+
+            bot.on('message', message => {
+
+                if(message.content === prefix + "si") {
+                    var embed = new Discord.RichEmbed()
+                    .setDescription("Information du discord")
+                    .addField("Nom du discord", message.guild.name)
+                    .addField("Crée le", message.guild.createdAt)
+                    .addField("Tu as rejoins ce serveur le", message.guild.joinedAt)
+                    .addField("Nombres de membres sur ce serveur", message.guild.memberCount)
+                    .setColor("0x0000FF")
+                    message.channel.sendEmbed(embed)
+
+                }
+            })
