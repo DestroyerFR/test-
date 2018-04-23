@@ -12,7 +12,7 @@ bot.on('ready', () => {
     console.log("Le bot est pret !");
 });
 
-client.login(process.env.TOKEN);
+bot.login(process.env.TOKEN);
 
 bot.on("guildMemberAdd",member => {
     member.guild.channels.find("name","bienvenue").send(`Bienvenue ${member.user.username}, Passe un bon moment avec nous, et fait un max de top1 `)
