@@ -326,3 +326,36 @@ bot.on('guildMemberAdd', function (member) {
 
                 }
             })
+
+bot.on('message', message => {
+    if (message.content === prefix + "fabriquant"){
+        message.channel.sendMessage("*Ce bot a été crée par MhBurgerKing*");
+        console.log("fabriquant effectué");
+    }
+    
+    if (message.content === "Salut"){
+        message.reply("Bien le bonjour. :)");
+        console.log("salut");
+    }
+    
+    if (message.content === "Bonjour"){
+        message.reply("Bien le bonjour. :)");
+        console.log("bonjour");
+    }
+    
+    if (message.content === "slt"){
+        message.reply("Bien le bonjour. :)");
+        console.log("slt");
+    }
+    
+    if (message.content === "bjr"){
+        message.reply("Bien le bonjour. :)");
+        console.log("bjr");
+    }
+    
+    if (message.content === "Hey"){
+        message.reply("Bien le bonjour. :)");
+        console.log("hey");
+    }
+
+});
