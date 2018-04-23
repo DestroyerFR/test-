@@ -307,6 +307,6 @@ bot.on('guildMemberAdd', function (member) {
                 var embed = new Discord.RichEmbed()
                 .setDescription(":8ball:")
                 .addField("Question", tte)
-                .addField("Réponse", réponse)
+                .addField("Réponse", reponse)
                 message.channel.sendEmbed(embed)
             }}) 
