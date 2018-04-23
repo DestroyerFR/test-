@@ -277,7 +277,7 @@ bot.on('guildMemberAdd', function (member) {
     });
 
     bot.on("message", function(message) {
-        if (messgae.author.equals(bot.user)) return;
+        if (message.author.equals(bot.user)) return;
 
         if(!message.content.startsWith(prefix)) return;
 
