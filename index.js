@@ -174,6 +174,9 @@ bot.on("message", (message) => {
       if(message.content === "Viande") {
         message.channel.send("Putain, ferme ta grand bouche avec ça, je suis végétalien, je mange que des légumes :yum: ");
       }
+      if(message.content === "!staff") {
+        message.channel.send(":rage: ALERTEE! Le staff est appellés ici :rage: @staff ps: Il faut le rôle staff pour que cela fonctionne ");
+      }
     })
   
   bot.on('message', message => {
