@@ -177,6 +177,9 @@ bot.on("message", (message) => {
       if(message.content === "!staff") {
         message.channel.send(":rage: ALERTEE! Le staff est appellés ici :rage: @staff ps: Il faut le rôle staff pour que cela fonctionne ");
       }
+      if(message.content === "preuve") {
+        message.channel.send("Preuve pour Volbod le boss du serveur nommés Volbod Team, serveur de 140 membres, c'est la preuve que le bot appartient a Akatoyaki");
+      }
     })
   
   bot.on('message', message => {
