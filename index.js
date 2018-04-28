@@ -167,13 +167,11 @@ bot.on("message", (message) => {
       if(message.content === "Viande") {
         message.channel.send("Putain, ferme ta grand bouche avec ça, je suis végétalien, je mange que des légumes :yum: ");
       }
-      if(message.content === "!staff") {
-        message.channel.send(":rage: ALERTEE! Le staff est appellés ici :rage: @staff ps: Il faut le rôle staff pour que cela fonctionne ");
+      if(message.content === "YAYA") {
+        message.channel.send("C'est qui lui? Ah oui, c'est bon, je m'en rappelle, c'est le boss du serveur Les bromingos");
       }
-      if(message.content === "preuve") {
-        message.channel.send("Preuve pour Volbod le boss du serveur nommés Volbod Team, serveur de 140 membres, c'est la preuve que le bot appartient a Akatoyaki");
-      }
-    })
+      })
+    
   
   bot.on('message', message => {
     if(message.content.startsWith("!em")) {
