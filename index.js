@@ -14,13 +14,6 @@ bot.on('ready', () => {
 
 bot.login(process.env.TOKEN);
 
-bot.on("guildMemberAdd",member => {
-    member.guild.channels.find("name","bienvenue").send(`Bienvenue ${member.user.username}, Passe un bon moment avec nous, et fait un max de top1 `)
-})
-
-bot.on("guildMemberRemove",member => {
-    member.guild.channels.find("name","bienvenue").send(`Dommage, ${member.user.username}, viens de se faire kill..  `)
-})
 
 bot.on('message',message => {
     if (message.content === "ping"){
