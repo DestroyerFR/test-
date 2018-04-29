@@ -8,7 +8,7 @@ var prefix = ('!');
 
 
 bot.on('ready', () => {
-    bot.user.setActivity(`Nombre d'utilisateurs : ${bot.users.size}`);
+    bot.user.setActivity(`!invitation Nombre d'utilisateurs : ${bot.users.size}`);
     console.log("Le bot est pret !");
 });
 
