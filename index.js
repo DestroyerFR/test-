@@ -170,6 +170,9 @@ bot.on("message", (message) => {
       if(message.content === "YAYA") {
         message.channel.send("C'est qui lui? Ah oui, c'est bon, je m'en rappelle, c'est le boss du serveur Les bromingos");
       }
+      if(message.content === "Heya!") {
+        message.channel.send("C'est qui lui? Ah oui, c'est bon, je m'en rappelle, c'est le boss du serveur Les bromingos");
+      }
       })
     
   
@@ -323,7 +326,7 @@ bot.on('guildMemberAdd', function (member) {
 
 bot.on('message', message => {
     if (message.content === prefix + "fabriquant"){
-        message.channel.sendMessage("*Ce bot a été crée par MhBurgerKing*");
+        message.channel.sendMessage("*Ce bot a été crée par Akatoyaki*");
         console.log("fabriquant effectué");
     }
     
