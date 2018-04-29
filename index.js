@@ -171,7 +171,7 @@ bot.on("message", (message) => {
         message.channel.send("C'est qui lui? Ah oui, c'est bon, je m'en rappelle, c'est le boss du serveur Les bromingos");
       }
       if(message.content === "Heya!") {
-        message.channel.send("C'est qui lui? Ah oui, c'est bon, je m'en rappelle, c'est le boss du serveur Les bromingos");
+        message.channel.send("Bien le bonjour. :)");
       }
       })
     
