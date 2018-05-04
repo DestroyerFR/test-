@@ -357,19 +357,28 @@ bot.on('message', message => {
 
 });
 
-
-
-const Discord = require("discord.js");
-
-module.exports.run = async (bot, message, args) => {
-
-      if(!message.member.hasPermission("ADMINISTRATOR")) return;
-      const sayMessage = args.join(" ");
-      message.delete().catch();
-      message.channel.send(sayMessage);
-
-}
-
-module.exports.help = {
-  name: "say"
-}
+case "sondage":
+           if (message.member.hasPermission("MANAGE_MESSAGES")) {
+               let args = message.content.split(" ").slice(1);
+               let thingToEcho = args.join(" ")
+               if (!thingToEcho) return message.reply("Merci d'envoyer une question pour le sondage")
+               if (!message.guild.channels.find("name", "sondage")) return message.reply("Le channel sondage est introuvable. merci de crée ce channel pour que celui-ci marche.")
+               var embedeee = new Discord.RichEmbed()
+                   .setDescription("Sondage")
+                   .addField(thingToEcho, "Répondre avec :white_check_mark: ou :x:")
+                   .setColor("0xB40404")
+                   .setTimestamp()
+           message.channel.sendMessage("Votre sondage a bien été envoyé dans #sondage.")
+           message.guild.channels.find("name", "sondage").sendEmbed(embedeee)
+           .then(function (message) {
+               message.react("✅")
+               message.react("❌")
+           }).catch(function() {
+           });
+           }else{
+               return message.reply("Tu n'as pas la permission.")}
+           break;
+            case "kick":
+           let command = message.content.split(" ")[0];
+           const args = message.content.slice(prefix.length).split(/ +/);
+           command = args.shift().toLowerCase();
