@@ -370,7 +370,7 @@ if (message.content === prefix + "help"){
         var help_embed = new Discord.RichEmbed()
             .setColor("#FE0000")
             .addField("Commandes du bot !" , "  !help : Affiche les commandes du bot ! \n!invite : Génere le lien d'invitation du bot !")
-            .addField("Interaction" , "ping : Pong ! ")
+            .addField("Interaction" , "ping, le bot te répond pong")
             .setFooter("Interface Robot par Jin Lee#7233 / 2018 / 1.0")
         message.channel.sendEmbed(help_embed);
             //message.channel.sendMessage("Voici les commandes du bot :\n - *help : pour afficher les commandes \n - *invite : pour générer le lien d'invitation du bot");
