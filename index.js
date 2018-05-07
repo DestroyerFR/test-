@@ -365,7 +365,7 @@ bot.on('message', message => {
 
 });
 
-
+bot.on("message" , message => {
 if (message.content === prefix + "help"){
         var help_embed = new Discord.RichEmbed()
             .setColor("#FE0000")
