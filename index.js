@@ -365,8 +365,18 @@ bot.on('message', message => {
 
 });
 
-bot.on("message" , message => {
-if (message.content === prefix + "help"){
+	
+	bot.on("message" , message => {
+    if (message.content === "ping"){
+        message.reply("pong! :ping_pong:");
+        console.log("ping pong");
+    }
+
+   
+        
+        
+
+     if (message.content === prefix + "help"){
         var help_embed = new Discord.RichEmbed()
             .setColor("#FE0000")
             .addField("Commandes du bot !" , "  !help : Affiche les commandes du bot ! \n!invite : Génere le lien d'invitation du bot !")
@@ -374,5 +384,5 @@ if (message.content === prefix + "help"){
             .setFooter("Interface Robot par Jin Lee#7233 / 2018 / 1.0")
         message.channel.sendEmbed(help_embed);
             //message.channel.sendMessage("Voici les commandes du bot :\n - *help : pour afficher les commandes \n - *invite : pour générer le lien d'invitation du bot");
-        console.log("Commande Help demandée !");
+        console.log("Commande *Help demandée !");
      }
