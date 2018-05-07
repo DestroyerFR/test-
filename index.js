@@ -386,3 +386,8 @@ bot.on('message', message => {
             //message.channel.sendMessage("Voici les commandes du bot :\n - *help : pour afficher les commandes \n - *invite : pour générer le lien d'invitation du bot");
         console.log("Commande *Help demandée !");
      }
+        }
+     }}
+
+
+);
