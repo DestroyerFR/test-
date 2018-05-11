@@ -16,7 +16,7 @@ db.defaults({ histoires: [], xp: []}).write()
 
 
 bot.on('ready', () => {
-    bot.user.setActivity(`!invitation Nombre d'utilisateurs : ${bot.users.size}`);
+    bot.user.setActivity(`niquer des mères`);
     console.log("Le bot est pret !");
 });
 
