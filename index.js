@@ -391,3 +391,17 @@ bot.on('message', message => {
 
 
 );
+
+
+
+    static void UpdatePresence()
+    {
+        DiscordRichPresence discordPresence;
+        memset(&discordPresence, 0, sizeof(discordPresence));
+        discordPresence.details = "En developpement";
+        discordPresence.startTimestamp = 1507665886;
+        discordPresence.endTimestamp = 1507665886;
+        discordPresence.largeImageText = "Morgane";
+        discordPresence.smallImageText = "Rogue - Level 100";
+        Discord_UpdatePresence(&discordPresence);
+    }
