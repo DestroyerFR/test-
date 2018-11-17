@@ -408,3 +408,19 @@ client.on("guildMemberAdd", member => {
     .setTimestamp()
 bvn.send({embed})
 });
+
+
+    client.on("message", (message) => {
+        if (message.content.startsWith("!kick")) {
+            if(message.member.hasPermission('KICK_MEMBERS')) {
+            var member= message.mentions.members.first();
+            // Kick
+            member.kick().then((member) => {
+                // Successmessage
+                message.channel.send(":wave: " + member.displayName + " a bien été expulser:point_right: ");
+            }).catch(() => {
+                 // Failmessage
+                message.channel.send("Tu n'a pas la permission de faire celà! ");
+            });
+        }
+    }});
