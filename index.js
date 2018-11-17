@@ -424,3 +424,17 @@ bvn.send({embed})
             });
         }
     }});
+
+      client.on('message', message => {
+        if(message.content.startsWith("!clear")) {
+        if (message.member.hasPermission("MANAGE_MESSAGES")) {
+            message.channel.fetchMessages()
+                .then(function (list) {
+                    message.channel.bulkDelete(list);
+                },
+                function (err) {
+                    message.channel.send("ERROR: ERROR CLEARING CHANNEL.")
+                });
+        }
+    }
+    })
