@@ -394,14 +394,17 @@ bot.on('message', message => {
 
 
 
-    static void UpdatePresence()
-    {
-        DiscordRichPresence discordPresence;
-        memset(&discordPresence, 0, sizeof(discordPresence));
-        discordPresence.details = "En developpement";
-        discordPresence.startTimestamp = 1507665886;
-        discordPresence.endTimestamp = 1507665886;
-        discordPresence.largeImageText = "Morgane";
-        discordPresence.smallImageText = "Rogue - Level 100";
-        Discord_UpdatePresence(&discordPresence);
-    }
+client.on("guildMemberAdd", member => {
+  const bvn = member.guild.channels.find(m => m.name === "「👶」arrivants");
+  if (!bvn) return;
+  const embed = new Discord.RichEmbed()
+    .setColor('YELLOW')
+    .setTitle("Arrivée d'un nouvel utilisateur")
+    .addField("Un nouvel utilisateur vient d'arriver", `Il s'agit de [${member.user.tag}](https://discordapp.com/)`, true)
+    .setDescription("J'espère que tu t'y plairas")
+    .addField("Tu veux savoir des choses sur moi? Et ben fait !help ;) ")
+    .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
+    .setFooter(`ID : ${member.user.id} | Lanksar'bot`)
+    .setTimestamp()
+bvn.send({embed})
+});
